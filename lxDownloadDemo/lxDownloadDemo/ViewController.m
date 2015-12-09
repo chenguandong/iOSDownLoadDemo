@@ -44,9 +44,17 @@
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([DownloadCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([DownloadCell class])];
     
     
-    NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration backgroundSessionConfiguration:@"com.cgd.www"];
+//    NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration backgroundSessionConfiguration:@"com.lxkj.lxDownloadDemo"];
+    
+    NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:@"com.lxkj.lxDownloadDemo"];
+    
+    //是否允许移动网络下载
+    sessionConfiguration.allowsCellularAccess = NO;
+    //最大下载条数
     sessionConfiguration.HTTPMaximumConnectionsPerHost = 5;
     
+    //allowsCellularAccess 属性指定是否允许使用蜂窝连接， discretionary属性为YES时表示当程序在后台运作时由系统自己选择最佳的网络连接配置，该属性可以节省通过蜂窝连接的带宽。在使用后台传输数据的时候，建议使用discretionary属性，而不是allowsCellularAccess属性，因为它会把WiFi和电源可用性考虑在内。补充：这个标志允许系统为分配任务进行性能优化。这意味着只有当设备有足够电量时，设备才通过Wifi进行数据传输。如果电量低，或者只仅有一个蜂窝连接，传输任务是不会运行的。后台传输总是在discretionary模式下运行。
+    sessionConfiguration.discretionary = YES;
     
     self.session = [NSURLSession sessionWithConfiguration:sessionConfiguration
                                                  delegate:self
@@ -96,11 +104,15 @@
 
 #pragma mark - DownloadCell delegate
 
+//startOrPauseDownloadingSingleFile
 - (void)startButtonClick:(DownloadInfoModel*)downloadModel{
 
     DownloadInfoModel *fdi = downloadModel;
     
     //没有下载 开始下载
+    
+    // The isDownloading property of the fdi object defines whether a downloading should be started
+    // or be stopped.
     if (!fdi.isDownloading) {
         // This is the case where a download task should be started.
         
@@ -144,6 +156,7 @@
 
 }
 
+//取消下载
 - (void)stopButtonClick:(DownloadInfoModel*)downloadModel{
 
     DownloadInfoModel *fdi = downloadModel;
@@ -164,6 +177,94 @@
 }
 
 
+
+//开始全部下载
+- (IBAction)startAllDownloads:(id)sender {
+    // Access all FileDownloadInfo objects using a loop.
+    for (int i=0; i<[self.arrFileDownloadData count]; i++) {
+        DownloadInfoModel *fdi = [self.arrFileDownloadData objectAtIndex:i];
+        
+        // Check if a file is already being downloaded or not.
+        if (!fdi.isDownloading) {
+            // Check if should create a new download task using a URL, or using resume data.
+            if (fdi.taskIdentifier == -1) {
+                fdi.downloadTask = [self.session downloadTaskWithURL:[NSURL URLWithString:fdi.downloadSource]];
+            }
+            else{
+                fdi.downloadTask = [self.session downloadTaskWithResumeData:fdi.taskResumeData];
+            }
+            
+            // Keep the new taskIdentifier.
+            fdi.taskIdentifier = fdi.downloadTask.taskIdentifier;
+            
+            // Start the download.
+            [fdi.downloadTask resume];
+            
+            // Indicate for each file that is being downloaded.
+            fdi.isDownloading = YES;
+        }
+    }
+    
+    // Reload the table view.
+    [self.tableView reloadData];
+}
+
+
+//取消全部下载
+
+- (IBAction)stopAllDownloads:(id)sender {
+    // Access all FileDownloadInfo objects using a loop.
+    for (int i=0; i<[self.arrFileDownloadData count]; i++) {
+        DownloadInfoModel *fdi = [self.arrFileDownloadData objectAtIndex:i];
+        
+        // Check if a file is being currently downloading.
+        if (fdi.isDownloading) {
+            // Cancel the task.
+            [fdi.downloadTask cancel];
+            
+            // Change all related properties.
+            fdi.isDownloading = NO;
+            fdi.taskIdentifier = -1;
+            fdi.downloadProgress = 0.0;
+            fdi.downloadTask = nil;
+        }
+    }
+    
+    // Reload the table view.
+    [self.tableView reloadData];
+}
+
+//重新开始全部任务 清空本地多有已经下载的文件
+- (IBAction)initializeAll:(id)sender {
+    // Access all FileDownloadInfo objects using a loop and give all properties their initial values.
+    for (int i=0; i<[self.arrFileDownloadData count]; i++) {
+         DownloadInfoModel *fdi = [self.arrFileDownloadData objectAtIndex:i];
+        
+        if (fdi.isDownloading) {
+            [fdi.downloadTask cancel];
+        }
+        
+        fdi.isDownloading = NO;
+        fdi.downloadComplete = NO;
+        fdi.taskIdentifier = -1;
+        fdi.downloadProgress = 0.0;
+        fdi.downloadTask = nil;
+    }
+    
+    // Reload the table view.
+    [self.tableView reloadData];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    // Get all files in documents directory.
+    NSArray *allFiles = [fileManager contentsOfDirectoryAtURL:self.docDirectoryURL
+                                   includingPropertiesForKeys:nil
+                                                      options:NSDirectoryEnumerationSkipsHiddenFiles
+                                                        error:nil];
+    for (int i=0; i<[allFiles count]; i++) {
+        [fileManager removeItemAtURL:[allFiles objectAtIndex:i] error:nil];
+    }
+}
 
 
 
