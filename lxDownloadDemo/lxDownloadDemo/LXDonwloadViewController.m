@@ -6,11 +6,11 @@
 //  Copyright © 2015年 冠东陈. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "LXDonwloadViewController.h"
 #import "DownloadInfoModel.h"
-#import "DownloadCell.h"
+#import "LXDownloadCell.h"
 #import "AppDelegate.h"
-@interface ViewController ()<UITableViewDataSource,UITableViewDelegate, NSURLSessionDelegate,DownloadCellDelegate>
+@interface LXDonwloadViewController ()<UITableViewDataSource,UITableViewDelegate, NSURLSessionDelegate,DownloadCellDelegate>
 
 @property (nonatomic, strong) NSURLSession *session;
 
@@ -24,7 +24,7 @@
 
 @end
 
-@implementation ViewController
+@implementation LXDonwloadViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -41,7 +41,7 @@
     self.tableView.dataSource  = self;
     
     
-    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([DownloadCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([DownloadCell class])];
+    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([LXDownloadCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([LXDownloadCell class])];
     
     
 //    NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration backgroundSessionConfiguration:@"com.lxkj.lxDownloadDemo"];
@@ -81,7 +81,7 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 
-    DownloadCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([DownloadCell class])];
+    LXDownloadCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([LXDownloadCell class])];
     
     
     // Get the respective FileDownloadInfo object from the arrFileDownloadData array.
@@ -367,7 +367,7 @@
             fdi.downloadProgress = (double)totalBytesWritten / (double)totalBytesExpectedToWrite;
             
             // Get the progress view of the appropriate cell and update its progress.
-            DownloadCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+            LXDownloadCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
             
             cell.downloadModel = fdi;
             

@@ -6,9 +6,9 @@
 //  Copyright © 2015年 冠东陈. All rights reserved.
 //
 
-#import "DownloadCell.h"
+#import "LXDownloadCell.h"
 #import "DownloadInfoModel.h"
-@interface DownloadCell ()
+@interface LXDownloadCell ()
 
 @property (weak, nonatomic) IBOutlet UIButton *startButton;
 
@@ -20,7 +20,7 @@
 
 @end
 
-@implementation DownloadCell
+@implementation LXDownloadCell
 
 - (void)awakeFromNib {
     // Initialization code

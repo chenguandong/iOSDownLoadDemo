@@ -9,13 +9,13 @@
 /* Begin PBXBuildFile section */
 		2904157E1C15B65600DA25E7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2904157D1C15B65600DA25E7 /* main.m */; };
 		290415811C15B65600DA25E7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 290415801C15B65600DA25E7 /* AppDelegate.m */; };
-		290415841C15B65600DA25E7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 290415831C15B65600DA25E7 /* ViewController.m */; };
+		290415841C15B65600DA25E7 /* LXDonwloadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 290415831C15B65600DA25E7 /* LXDonwloadViewController.m */; };
 		290415871C15B65600DA25E7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 290415851C15B65600DA25E7 /* Main.storyboard */; };
 		290415891C15B65600DA25E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 290415881C15B65600DA25E7 /* Assets.xcassets */; };
 		2904158C1C15B65600DA25E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2904158A1C15B65600DA25E7 /* LaunchScreen.storyboard */; };
 		290415961C15B6AF00DA25E7 /* DownloadInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 290415951C15B6AF00DA25E7 /* DownloadInfoModel.m */; };
-		2904159B1C15B9AF00DA25E7 /* DownloadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 290415991C15B9AF00DA25E7 /* DownloadCell.m */; };
-		2904159C1C15B9AF00DA25E7 /* DownloadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2904159A1C15B9AF00DA25E7 /* DownloadCell.xib */; };
+		2904159B1C15B9AF00DA25E7 /* LXDownloadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 290415991C15B9AF00DA25E7 /* LXDownloadCell.m */; };
+		2904159C1C15B9AF00DA25E7 /* LXDownloadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2904159A1C15B9AF00DA25E7 /* LXDownloadCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,17 +23,17 @@
 		2904157D1C15B65600DA25E7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2904157F1C15B65600DA25E7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		290415801C15B65600DA25E7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		290415821C15B65600DA25E7 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		290415831C15B65600DA25E7 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		290415821C15B65600DA25E7 /* LXDonwloadViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXDonwloadViewController.h; sourceTree = "<group>"; };
+		290415831C15B65600DA25E7 /* LXDonwloadViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXDonwloadViewController.m; sourceTree = "<group>"; };
 		290415861C15B65600DA25E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		290415881C15B65600DA25E7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2904158B1C15B65600DA25E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2904158D1C15B65600DA25E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		290415941C15B6AF00DA25E7 /* DownloadInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadInfoModel.h; sourceTree = "<group>"; };
 		290415951C15B6AF00DA25E7 /* DownloadInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadInfoModel.m; sourceTree = "<group>"; };
-		290415981C15B9AF00DA25E7 /* DownloadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadCell.h; sourceTree = "<group>"; };
-		290415991C15B9AF00DA25E7 /* DownloadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadCell.m; sourceTree = "<group>"; };
-		2904159A1C15B9AF00DA25E7 /* DownloadCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DownloadCell.xib; sourceTree = "<group>"; };
+		290415981C15B9AF00DA25E7 /* LXDownloadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXDownloadCell.h; sourceTree = "<group>"; };
+		290415991C15B9AF00DA25E7 /* LXDownloadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXDownloadCell.m; sourceTree = "<group>"; };
+		2904159A1C15B9AF00DA25E7 /* LXDownloadCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LXDownloadCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,8 +70,8 @@
 				290415931C15B69A00DA25E7 /* Model */,
 				2904157F1C15B65600DA25E7 /* AppDelegate.h */,
 				290415801C15B65600DA25E7 /* AppDelegate.m */,
-				290415821C15B65600DA25E7 /* ViewController.h */,
-				290415831C15B65600DA25E7 /* ViewController.m */,
+				290415821C15B65600DA25E7 /* LXDonwloadViewController.h */,
+				290415831C15B65600DA25E7 /* LXDonwloadViewController.m */,
 				290415851C15B65600DA25E7 /* Main.storyboard */,
 				290415881C15B65600DA25E7 /* Assets.xcassets */,
 				2904158A1C15B65600DA25E7 /* LaunchScreen.storyboard */,
@@ -101,9 +101,9 @@
 		290415971C15B99300DA25E7 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				290415981C15B9AF00DA25E7 /* DownloadCell.h */,
-				290415991C15B9AF00DA25E7 /* DownloadCell.m */,
-				2904159A1C15B9AF00DA25E7 /* DownloadCell.xib */,
+				290415981C15B9AF00DA25E7 /* LXDownloadCell.h */,
+				290415991C15B9AF00DA25E7 /* LXDownloadCell.m */,
+				2904159A1C15B9AF00DA25E7 /* LXDownloadCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -172,7 +172,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2904158C1C15B65600DA25E7 /* LaunchScreen.storyboard in Resources */,
-				2904159C1C15B9AF00DA25E7 /* DownloadCell.xib in Resources */,
+				2904159C1C15B9AF00DA25E7 /* LXDownloadCell.xib in Resources */,
 				290415891C15B65600DA25E7 /* Assets.xcassets in Resources */,
 				290415871C15B65600DA25E7 /* Main.storyboard in Resources */,
 			);
@@ -185,11 +185,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				290415841C15B65600DA25E7 /* ViewController.m in Sources */,
+				290415841C15B65600DA25E7 /* LXDonwloadViewController.m in Sources */,
 				290415811C15B65600DA25E7 /* AppDelegate.m in Sources */,
 				2904157E1C15B65600DA25E7 /* main.m in Sources */,
 				290415961C15B6AF00DA25E7 /* DownloadInfoModel.m in Sources */,
-				2904159B1C15B9AF00DA25E7 /* DownloadCell.m in Sources */,
+				2904159B1C15B9AF00DA25E7 /* LXDownloadCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

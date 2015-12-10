@@ -16,7 +16,7 @@
 
 @end
 
-@interface DownloadCell : UITableViewCell
+@interface LXDownloadCell : UITableViewCell
 
 @property(nonatomic,weak)id<DownloadCellDelegate>delegate;
 
