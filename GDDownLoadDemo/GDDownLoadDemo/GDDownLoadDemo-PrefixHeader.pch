@@ -1,0 +1,18 @@
+//
+//  GDDownLoadDemo-PrefixHeader.pch
+//  GDDownLoadDemo
+//
+//  Created by 冠东 陈 on 16/1/6.
+//  Copyright © 2016年 冠东陈. All rights reserved.
+//
+
+#ifndef GDDownLoadDemo_PrefixHeader_pch
+#define GDDownLoadDemo_PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#import "Constant.h"
+#import <Realm.h>
+
+#endif /* GDDownLoadDemo_PrefixHeader_pch */
