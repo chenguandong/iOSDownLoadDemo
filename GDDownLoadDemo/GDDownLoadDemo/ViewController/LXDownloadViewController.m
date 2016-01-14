@@ -47,11 +47,12 @@
     
 }
 
-- (instancetype)init
-{
-    self = [super init];
+
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
+
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    
     if (self) {
-        [self initDownLoadSession];
         //初始化数据
         [self initializeFileDownloadDataArray];
         
@@ -61,7 +62,10 @@
         NSArray *URLs = [[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask];
         
         self.docDirectoryURL = [URLs objectAtIndex:0];
+        
+        [self initDownLoadSession];
     }
+    
     return self;
 }
 
@@ -122,25 +126,22 @@
     }
     
     //状态更改不能是-1 了  防止下次查询出问题
-    
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.tableView reloadData];
-    });
+   
     
     
 }
 
 - (void)initDownLoadSession{
-    NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:@"com.www.GDDownload"];
+    
+    NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:@"com.gcd.download"];
     
     //是否允许移动网络下载
     sessionConfiguration.allowsCellularAccess = YES;
     //最大下载条数
-    sessionConfiguration.HTTPMaximumConnectionsPerHost = 5;
+    sessionConfiguration.HTTPMaximumConnectionsPerHost = 3;
     
     //allowsCellularAccess 属性指定是否允许使用蜂窝连接， discretionary属性为YES时表示当程序在后台运作时由系统自己选择最佳的网络连接配置，该属性可以节省通过蜂窝连接的带宽。在使用后台传输数据的时候，建议使用discretionary属性，而不是allowsCellularAccess属性，因为它会把WiFi和电源可用性考虑在内。补充：这个标志允许系统为分配任务进行性能优化。这意味着只有当设备有足够电量时，设备才通过Wifi进行数据传输。如果电量低，或者只仅有一个蜂窝连接，传输任务是不会运行的。后台传输总是在discretionary模式下运行。
-    sessionConfiguration.discretionary = NO;
+    sessionConfiguration.discretionary = YES;
     
     self.session = [NSURLSession sessionWithConfiguration:sessionConfiguration
                                                  delegate:self
@@ -210,6 +211,7 @@
         
     }else{
     
+         [MBProgressHUD showHUDWithTextAutoHidden:@"别点了 还没下载完呢"];
     }
 
 }
@@ -237,11 +239,7 @@
             //删除本地文件
             
             if (dbModel.videoState==200) {
-                
-                if (infoModel.downloadTask) {
-                    [infoModel.downloadTask cancel];
-                }
-                
+
                 NSFileManager *fileManager = [NSFileManager defaultManager];
                 
                 NSURL *destinationURL = [self.docDirectoryURL URLByAppendingPathComponent:[[infoModel.downloadSource componentsSeparatedByString:@"/"] lastObject]];
@@ -253,7 +251,9 @@
                
             }else{
                 
-                [infoModel.downloadTask cancel];
+                if (infoModel.downloadTask) {
+                    [infoModel.downloadTask cancel];
+                }
             }
             
             RLMRealm *realm = [RLMRealm defaultRealm];
@@ -452,34 +452,35 @@
 -(void)initializeFileDownloadDataArray{
    
    
-        // time-consuming task
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.arrFileDownloadData = [[NSMutableArray alloc] init];
+
+    self.arrFileDownloadData = @[].mutableCopy;
+    
+    
+    RLMResults *downloadInfoArr = [DownLoadInfoDBModel allObjects];
+    
+    for (DownLoadInfoDBModel *dbModel in downloadInfoArr) {
+        
+        DownloadInfoModel *downLoadInfoModel = [[DownloadInfoModel alloc] initWithFileTitle:dbModel.videoName andDownloadSource:dbModel.videoUrl];
+        
+        if (dbModel.videoState==200) {
+            downLoadInfoModel.downloadComplete = YES;
             
+            downLoadInfoModel.downloadProgress = 1.0;
             
-            RLMResults *downloadInfoArr = [DownLoadInfoDBModel allObjects];
-            
-            for (DownLoadInfoDBModel *dbModel in downloadInfoArr) {
-                
-                DownloadInfoModel *downLoadInfoModel = [[DownloadInfoModel alloc] initWithFileTitle:dbModel.videoName andDownloadSource:dbModel.videoUrl];
-                
-                if (dbModel.videoState==200) {
-                    downLoadInfoModel.downloadComplete = YES;
-                    
-                    downLoadInfoModel.downloadProgress = 1.0;
-                }
-                
-                downLoadInfoModel.imageUrl = dbModel.videoImage;
-                
-                [self.arrFileDownloadData addObject:downLoadInfoModel];
-                
-                NSLog(@"%@",dbModel.videoUrl);
-                
-                
-            }
-            
-            [self startAllDownloads:nil];
-        });
+        }
+        
+        downLoadInfoModel.imageUrl = dbModel.videoImage;
+        
+        downLoadInfoModel.taskIdentifier = -1;
+        
+        [self.arrFileDownloadData addObject:downLoadInfoModel];
+        
+        NSLog(@"%@",dbModel.videoUrl);
+        
+        
+    }
+    
+    [self startAllDownloads:nil];
    
 }
 

@@ -10,6 +10,8 @@
 #import <UIKit/UIKit.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "AppDelegate.h"
+#import <Realm.h>
+#import "MBProgressHUD+LXProgressHUD.h"
 //获取 AppDelegate 实例
 #define SharedApp ((AppDelegate *)[[UIApplication sharedApplication] delegate])
 

@@ -22,6 +22,8 @@
 
 - (void)viewDidLoad {
     
+    self.title = @"添加下载";
+    
     [super viewDidLoad];
     
     _dataArr = @[].mutableCopy;
@@ -89,8 +91,7 @@
     
     if (dbModelArr.count!=0) {
         
-       // [MBProgressHUD showHUDWithTextAutoHidden:@"已经下载"];
-        
+        [MBProgressHUD showHUDWithTextAutoHidden:@"已经下载,别再点了"];
         
         return ;
     }
@@ -116,6 +117,8 @@
     
     
     [[NSNotificationCenter defaultCenter]postNotificationName:kNotifacation_DownloadAdd object:nil];
+    
+     [MBProgressHUD showHUDWithTextAutoHidden:@"添加下载成功"];
     
 
 }

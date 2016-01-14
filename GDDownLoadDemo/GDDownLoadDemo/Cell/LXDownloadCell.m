@@ -51,7 +51,7 @@
         _progressView.progress = downloadModel.downloadProgress;
         _downLable.text = [NSString stringWithFormat:@"%.0lf%%",downloadModel.downloadProgress*100];
         
-        [_downLoadImageView sd_setImageWithURL:[NSURL URLWithString:downloadModel.imageUrl] placeholderImage:[UIImage imageNamed:@"logo180"]];
+        [_downLoadImageView sd_setImageWithURL:[NSURL URLWithString:downloadModel.imageUrl] placeholderImage:[UIImage imageNamed:@"default"]];
         _dwonLoadFileName.text = downloadModel.fileTitle;
         
         if (downloadModel.isDownloading) {

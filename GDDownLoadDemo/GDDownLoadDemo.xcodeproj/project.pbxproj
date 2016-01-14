@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		298A52291C47D815004A9C34 /* MBProgressHUD+LXProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 298A52281C47D814004A9C34 /* MBProgressHUD+LXProgressHUD.m */; };
 		298CB8961C2ACCF80058EC11 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 298CB8951C2ACCF80058EC11 /* main.m */; };
 		298CB8991C2ACCF80058EC11 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 298CB8981C2ACCF80058EC11 /* AppDelegate.m */; };
 		298CB8A11C2ACCF80058EC11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 298CB8A01C2ACCF80058EC11 /* Assets.xcassets */; };
@@ -35,6 +36,8 @@
 
 /* Begin PBXFileReference section */
 		2565D9D528C2840548F613B2 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		298A52271C47D814004A9C34 /* MBProgressHUD+LXProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+LXProgressHUD.h"; sourceTree = "<group>"; };
+		298A52281C47D814004A9C34 /* MBProgressHUD+LXProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+LXProgressHUD.m"; sourceTree = "<group>"; };
 		298CB8911C2ACCF80058EC11 /* GDDownLoadDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GDDownLoadDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		298CB8951C2ACCF80058EC11 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		298CB8971C2ACCF80058EC11 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -96,6 +99,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		298A52261C47D814004A9C34 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				298A52271C47D814004A9C34 /* MBProgressHUD+LXProgressHUD.h */,
+				298A52281C47D814004A9C34 /* MBProgressHUD+LXProgressHUD.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
 		298CB8881C2ACCF80058EC11 = {
 			isa = PBXGroup;
 			children = (
@@ -117,6 +129,7 @@
 		298CB8931C2ACCF80058EC11 /* GDDownLoadDemo */ = {
 			isa = PBXGroup;
 			children = (
+				298A52261C47D814004A9C34 /* Category */,
 				29C109EB1C3D471A00C8D0AA /* Constant */,
 				298CB8B71C2ACECF0058EC11 /* Cell */,
 				298CB8AB1C2ACD200058EC11 /* Model */,
@@ -247,6 +260,7 @@
 				TargetAttributes = {
 					298CB8901C2ACCF80058EC11 = {
 						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = BU39DT6VD4;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -338,6 +352,7 @@
 				29C109E21C3D428400C8D0AA /* DownloadInfoModel.m in Sources */,
 				29C109EE1C3D471A00C8D0AA /* Constant.m in Sources */,
 				29C109EA1C3D446200C8D0AA /* LXDownloadViewController.m in Sources */,
+				298A52291C47D815004A9C34 /* MBProgressHUD+LXProgressHUD.m in Sources */,
 				298CB8BB1C2ACEF90058EC11 /* AddDownLoadTableViewCell.m in Sources */,
 				29C109E11C3D428400C8D0AA /* DownLoadInfoDBModel.m in Sources */,
 				298CB8B01C2ACD7D0058EC11 /* GDTabBarController.m in Sources */,
@@ -449,13 +464,14 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = YES;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/GDDownLoadDemo/GDDownLoadDemo-PrefixHeader.pch";
 				INFOPLIST_FILE = GDDownLoadDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cgd.GDDownLoadDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cgd.download;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -466,13 +482,14 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = YES;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/GDDownLoadDemo/GDDownLoadDemo-PrefixHeader.pch";
 				INFOPLIST_FILE = GDDownLoadDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cgd.GDDownLoadDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cgd.download;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
